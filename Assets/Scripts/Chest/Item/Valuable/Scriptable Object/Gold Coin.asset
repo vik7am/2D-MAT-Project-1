@@ -16,3 +16,4 @@ MonoBehaviour:
   valuableId: 2
   minStackSize: 1
   maxStackSize: 2
+  value: 100

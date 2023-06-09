@@ -11,5 +11,6 @@ namespace ProfessionalThief
         public ValuableId valuableId;
         public int minStackSize;
         public int maxStackSize;
+        public int value;
     }
 }

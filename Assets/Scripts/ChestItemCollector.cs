@@ -5,9 +5,15 @@ using UnityEngine;
 
 namespace ProfessionalThief
 {
+    [RequireComponent(typeof(Inventory))]
     public class ChestItemCollector : MonoBehaviour
     {
         private Chest chest;
+        private Inventory inventory;
+
+        private void Awake() {
+            inventory = GetComponent<Inventory>();
+        }
 
         void Update()
         {
@@ -25,6 +31,7 @@ namespace ProfessionalThief
 
         private void AddItemToInventory(Item item){
             Debug.Log(item.id);
+            inventory.AddItem(item);
         }
 
         private void OnCollisionEnter2D(Collision2D other) {

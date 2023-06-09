@@ -9,6 +9,7 @@ namespace ProfessionalThief
     [RequireComponent(typeof(Item))]
     public class Valuable : MonoBehaviour
     {
+        public ValuableId id;
         public ValuableData data;
         private Item item;
 
@@ -18,6 +19,7 @@ namespace ProfessionalThief
 
         private void Start() {
             item.id = ItemId.VALUABLE;
+            id = data.valuableId;
         }
     }
 }
