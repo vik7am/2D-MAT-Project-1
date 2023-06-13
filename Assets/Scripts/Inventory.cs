@@ -27,6 +27,17 @@ namespace ProfessionalThief
             }
         }
 
+        public void AddGadget(Gadget gadget){
+            gadgetList.Add(gadget.id, gadget);
+            Debug.Log(gadget);
+        }
+
+        public void AddValuable(Valuable valuable){
+            valuableList.Add(valuable.id, valuable);
+            Debug.Log(valuable);
+            //UpdateTotalTake(valuable, item.stackSize);
+        }
+
         public bool HasGadget(GadgetId gadgetId){
             return gadgetList.ContainsKey(gadgetId);
         }

@@ -1,21 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProfessionalThief
 {
-    [RequireComponent(typeof(PlayerMovement))]
     public class Player : MonoBehaviour
     {
-        private PlayerMovement playerMovement;
+        private PlayerInput playerInput;
 
         void Awake()
         {
-            playerMovement = GetComponent<PlayerMovement>();
+            playerInput = GetComponent<PlayerInput>();
         }
 
         private void Start() {
-            GameManager.Instance.OnGameOver += playerMovement.DisableMovement;
+            GameManager.Instance.OnGameOver += playerInput.DisablePlayerInput;
         }
     }
 }

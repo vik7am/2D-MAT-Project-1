@@ -4,22 +4,23 @@ using UnityEngine;
 
 namespace ProfessionalThief
 {
-    public abstract class Chest : MonoBehaviour
+    public interface IInteractableItem{
+        void Interact(GameObject gameObject);
+    }
+
+    public abstract class Chest : MonoBehaviour, IInteractableItem
     {
         public bool empty;
         public Item item;
 
-        void Start()
-        {
+        private void Start(){
             empty = false;
             InitializeItem();
         }
 
-        public Item GetItem(){
-            return item;
-        }
+        public abstract void Interact(GameObject gameObject);
         
-        public abstract void InitializeItem();
+        protected abstract void InitializeItem();
         
     }
 }

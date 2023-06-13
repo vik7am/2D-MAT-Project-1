@@ -10,12 +10,18 @@ namespace ProfessionalThief
         [SerializeField] ValuableData valuableData;
         Valuable valuable;
 
-        public override void InitializeItem()
-        {
+        protected override void InitializeItem(){
             valuable = Instantiate(valuablePrefab);
             valuable.data = valuableData;
             item = valuable.GetComponent<Item>();
             item.stackSize = 2;
+        }
+
+        public override void Interact(GameObject gameObject){
+            Inventory inventory = gameObject.GetComponent<Inventory>();
+            if(inventory){
+                inventory.AddValuable(valuable);
+            }
         }
     }
 }

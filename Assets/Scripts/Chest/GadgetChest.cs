@@ -9,11 +9,18 @@ namespace ProfessionalThief
         public Gadget gadgetPrefab;
         private Gadget gadget;
 
-        public override void InitializeItem()
+        protected override void InitializeItem()
         {
             gadget = Instantiate<Gadget>(gadgetPrefab);
             item = gadget.GetComponent<Item>();
             item.stackSize = 1;
+        }
+
+        public override void Interact(GameObject gameObject){
+            Inventory inventory = gameObject.GetComponent<Inventory>();
+            if(inventory){
+                inventory.AddGadget(gadget);
+            }
         }
     }
 }
