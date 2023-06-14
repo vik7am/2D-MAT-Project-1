@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace ProfessionalThief
 {
@@ -9,6 +10,10 @@ namespace ProfessionalThief
         private Dictionary<GadgetId, Gadget> gadgetList;
         private int totalTake;
 
+        public event Action<Valuable ,int> onValuableAdded;
+        public static event Action<Gadget> onGadgetAdded;
+        
+
         private void Start(){
             valuableList = new Dictionary<ValuableId, Valuable>();
             gadgetList = new Dictionary<GadgetId, Gadget>();
@@ -17,12 +22,12 @@ namespace ProfessionalThief
 
         public void AddGadget(Gadget gadget){
             gadgetList.Add(gadget.id, gadget);
-            Debug.Log(gadget); //log
+            onGadgetAdded?.Invoke(gadget);
         }
 
         public void AddValuable(Valuable valuable , int quantity){
             valuableList.Add(valuable.id, valuable);
-            Debug.Log(valuable + " | " + quantity); //log
+            onValuableAdded?.Invoke(valuable, quantity);
             UpdateTotalTake(valuable, quantity);
         }
 
@@ -37,7 +42,7 @@ namespace ProfessionalThief
 
         private void UpdateTotalTake(Valuable valuable, int stackSize){
             totalTake += valuable.value * stackSize;
-            Debug.Log("Take: " + totalTake); //log
+            EventManager.Instance.OnTotalTakeUpdated(totalTake);
         }
     }
 }

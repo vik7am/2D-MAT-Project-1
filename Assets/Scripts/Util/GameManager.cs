@@ -1,15 +1,16 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProfessionalThief
 {
     public class GameManager : GenericMonoSingleton<GameManager>
     {
-        public event Action OnGameOver;
+        public UnityEvent onGameOver;
 
         public void ActivateAlarm(){
             Debug.Log("Game Over");
-            OnGameOver?.Invoke();
+            onGameOver?.Invoke();
         }
     }
 }

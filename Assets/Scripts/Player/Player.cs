@@ -14,7 +14,6 @@ namespace ProfessionalThief
 
         private void Start() {
             movement.SetMovementInput(playerInput);
-            GameManager.Instance.OnGameOver += playerInput.DisablePlayerInput;
         }
     }
 }
