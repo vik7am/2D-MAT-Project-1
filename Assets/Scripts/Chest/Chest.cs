@@ -10,11 +10,12 @@ namespace ProfessionalThief
 
     public abstract class Chest : MonoBehaviour, IInteractableItem
     {
-        public bool empty;
-        public Item item;
+        private bool isEmpty;
+
+        public bool IsEmpty {get => isEmpty;}
 
         private void Start(){
-            empty = false;
+            isEmpty = false;
             InitializeItem();
         }
 

@@ -6,20 +6,16 @@ namespace ProfessionalThief
 {
     public enum ValuableId{CASH, SILVER_COIN, GOLD_COIN}
 
-    [RequireComponent(typeof(Item))]
-    public class Valuable : MonoBehaviour
+    public class Valuable
     {
         public ValuableId id;
-        public ValuableData data;
-        private Item item;
+        public string name;
+        public int value;
 
-        private void Awake() {
-            item = GetComponent<Item>();
-        }
-
-        private void Start() {
-            item.id = ItemId.VALUABLE;
+        public Valuable(ValuableData data){
             id = data.valuableId;
+            name = data.name;
+            value = data.value;
         }
     }
 }

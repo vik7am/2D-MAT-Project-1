@@ -17,12 +17,13 @@ namespace ProfessionalThief
 
         public void AddGadget(Gadget gadget){
             gadgetList.Add(gadget.id, gadget);
-            Debug.Log(gadget);
+            Debug.Log(gadget); //log
         }
 
-        public void AddValuable(Valuable valuable){
+        public void AddValuable(Valuable valuable , int quantity){
             valuableList.Add(valuable.id, valuable);
-            Debug.Log(valuable);
+            Debug.Log(valuable + " | " + quantity); //log
+            UpdateTotalTake(valuable, quantity);
         }
 
         public bool HasGadget(GadgetId gadgetId){
@@ -35,8 +36,8 @@ namespace ProfessionalThief
         }
 
         private void UpdateTotalTake(Valuable valuable, int stackSize){
-            totalTake += valuable.data.value * stackSize;
-            Debug.Log("Take: " + totalTake);
+            totalTake += valuable.value * stackSize;
+            Debug.Log("Take: " + totalTake); //log
         }
     }
 }

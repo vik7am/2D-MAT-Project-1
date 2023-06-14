@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 namespace ProfessionalThief
 {
@@ -7,6 +8,7 @@ namespace ProfessionalThief
         public event Action OnGameOver;
 
         public void ActivateAlarm(){
+            Debug.Log("Game Over");
             OnGameOver?.Invoke();
         }
     }

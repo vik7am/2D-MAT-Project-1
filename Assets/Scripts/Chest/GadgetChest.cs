@@ -9,11 +9,8 @@ namespace ProfessionalThief
         [SerializeField] private Gadget gadgetPrefab;
         private Gadget gadget;
 
-        protected override void InitializeItem()
-        {
+        protected override void InitializeItem(){
             gadget = Instantiate<Gadget>(gadgetPrefab);
-            item = gadget.GetComponent<Item>();
-            item.stackSize = 1;
         }
 
         public override void Interact(Interactor interactor){
