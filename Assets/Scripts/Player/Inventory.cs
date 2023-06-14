@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,25 +5,14 @@ namespace ProfessionalThief
 {
     public class Inventory : MonoBehaviour
     {
-        Dictionary<ValuableId, Valuable> valuableList;
-        Dictionary<GadgetId, Gadget> gadgetList;
+        private Dictionary<ValuableId, Valuable> valuableList;
+        private Dictionary<GadgetId, Gadget> gadgetList;
         private int totalTake;
 
-        void Start()
-        {
+        private void Start(){
             valuableList = new Dictionary<ValuableId, Valuable>();
             gadgetList = new Dictionary<GadgetId, Gadget>();
             totalTake = 0;
-        }
-
-        public void AddItem(Item item){
-            if(item.TryGetComponent<Valuable>(out Valuable valuable)){
-                valuableList.Add(valuable.id, valuable);
-                UpdateTotalTake(valuable, item.stackSize);
-            }
-            else if(item.TryGetComponent<Gadget>(out Gadget gadget)){
-                gadgetList.Add(gadget.id, gadget);
-            }
         }
 
         public void AddGadget(Gadget gadget){
@@ -35,7 +23,6 @@ namespace ProfessionalThief
         public void AddValuable(Valuable valuable){
             valuableList.Add(valuable.id, valuable);
             Debug.Log(valuable);
-            //UpdateTotalTake(valuable, item.stackSize);
         }
 
         public bool HasGadget(GadgetId gadgetId){
@@ -47,7 +34,7 @@ namespace ProfessionalThief
             return gadgetList[gadgetId];
         }
 
-        public void UpdateTotalTake(Valuable valuable, int stackSize){
+        private void UpdateTotalTake(Valuable valuable, int stackSize){
             totalTake += valuable.data.value * stackSize;
             Debug.Log("Take: " + totalTake);
         }

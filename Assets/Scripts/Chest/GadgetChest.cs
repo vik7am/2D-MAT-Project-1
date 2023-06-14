@@ -6,7 +6,7 @@ namespace ProfessionalThief
 {
     public class GadgetChest : Chest
     {
-        public Gadget gadgetPrefab;
+        [SerializeField] private Gadget gadgetPrefab;
         private Gadget gadget;
 
         protected override void InitializeItem()
@@ -16,8 +16,8 @@ namespace ProfessionalThief
             item.stackSize = 1;
         }
 
-        public override void Interact(GameObject gameObject){
-            Inventory inventory = gameObject.GetComponent<Inventory>();
+        public override void Interact(Interactor interactor){
+            Inventory inventory = interactor.GetComponent<Inventory>();
             if(inventory){
                 inventory.AddGadget(gadget);
             }

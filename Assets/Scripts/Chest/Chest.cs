@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ProfessionalThief
 {
     public interface IInteractableItem{
-        void Interact(GameObject gameObject);
+        void Interact(Interactor interactor);
     }
 
     public abstract class Chest : MonoBehaviour, IInteractableItem
@@ -18,7 +18,7 @@ namespace ProfessionalThief
             InitializeItem();
         }
 
-        public abstract void Interact(GameObject gameObject);
+        public abstract void Interact(Interactor interactor);
         
         protected abstract void InitializeItem();
         

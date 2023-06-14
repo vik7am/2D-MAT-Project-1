@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProfessionalThief
@@ -8,13 +5,15 @@ namespace ProfessionalThief
     public class Player : MonoBehaviour
     {
         private PlayerInput playerInput;
+        private Movement movement;
 
-        void Awake()
-        {
+        private void Awake(){
             playerInput = GetComponent<PlayerInput>();
+            movement = GetComponent<Movement>();
         }
 
         private void Start() {
+            movement.SetMovementInput(playerInput);
             GameManager.Instance.OnGameOver += playerInput.DisablePlayerInput;
         }
     }

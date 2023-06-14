@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace ProfessionalThief
@@ -15,23 +14,29 @@ namespace ProfessionalThief
         private Vector2 direction;
         private IMovementInput movementInput;
 
-        void Awake(){
+        private void Awake(){
             rigidbody2D = GetComponent<Rigidbody2D>();
-            movementInput = GetComponent<IMovementInput>();
         }
 
-        void Update(){
+        private void Update(){
+            if(movementInput == null)
+                return;
             UpdateMovementDirection();
             UpdateLookDirection();
         }
 
-        void FixedUpdate(){
+        private void FixedUpdate(){
+            if(movementInput == null)
+                return;
             UpdateMovement();
         }
 
+        public void SetMovementInput(IMovementInput movementInput){
+            this.movementInput = movementInput;
+        }
+
         private void UpdateMovementDirection(){
-            if(movementInput != null)
-                direction = movementInput.GetMovementDirection();
+            direction = movementInput.GetMovementDirection();
         }
 
         private void UpdateLookDirection(){

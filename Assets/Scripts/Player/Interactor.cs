@@ -9,8 +9,7 @@ namespace ProfessionalThief
     {
         private IInteractableItem interactableItem;
 
-        private void Update()
-        {
+        private void Update(){
             if(Input.GetKeyDown(KeyCode.E)){
                 InteractWithItem();
             }
@@ -18,7 +17,7 @@ namespace ProfessionalThief
 
         private void InteractWithItem(){
             if(interactableItem == null) return;
-            interactableItem.Interact(gameObject);
+            interactableItem.Interact(this);
         }
 
         private void OnCollisionEnter2D(Collision2D other) {

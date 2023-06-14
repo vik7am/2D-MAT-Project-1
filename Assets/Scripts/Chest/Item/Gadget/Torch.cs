@@ -6,7 +6,6 @@ namespace ProfessionalThief
 {
     public class Torch : Gadget
     {
-
         protected override void Start() {
             base.Start();
             id = GadgetId.TORCH;

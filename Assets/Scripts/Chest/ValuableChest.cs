@@ -6,9 +6,9 @@ namespace ProfessionalThief
 {
     public class ValuableChest : Chest
     {
-        [SerializeField] Valuable valuablePrefab;
-        [SerializeField] ValuableData valuableData;
-        Valuable valuable;
+        [SerializeField] private Valuable valuablePrefab;
+        [SerializeField] private ValuableData valuableData;
+        private Valuable valuable;
 
         protected override void InitializeItem(){
             valuable = Instantiate(valuablePrefab);
@@ -17,8 +17,8 @@ namespace ProfessionalThief
             item.stackSize = 2;
         }
 
-        public override void Interact(GameObject gameObject){
-            Inventory inventory = gameObject.GetComponent<Inventory>();
+        public override void Interact(Interactor interactor){
+            Inventory inventory = interactor.GetComponent<Inventory>();
             if(inventory){
                 inventory.AddValuable(valuable);
             }

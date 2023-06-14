@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProfessionalThief
@@ -8,8 +6,8 @@ namespace ProfessionalThief
     {
         private static T instance;
         public static T Instance { get => instance; }
-        protected void Awake()
-        {
+
+        protected void Awake(){
             if(instance == null){
                 instance = (T)this;
                 DontDestroyOnLoad(this);
