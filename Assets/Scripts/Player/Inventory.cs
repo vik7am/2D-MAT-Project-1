@@ -10,8 +10,9 @@ namespace ProfessionalThief
         private Dictionary<GadgetId, Gadget> gadgetList;
         private int totalTake;
 
-        public event Action<Valuable ,int> onValuableAdded;
+        public static event Action<Valuable ,int> onValuableAdded;
         public static event Action<Gadget> onGadgetAdded;
+        public static event Action<int> onTotalTakeUpdated;
         
 
         private void Start(){
@@ -42,7 +43,7 @@ namespace ProfessionalThief
 
         private void UpdateTotalTake(Valuable valuable, int stackSize){
             totalTake += valuable.value * stackSize;
-            EventManager.Instance.OnTotalTakeUpdated(totalTake);
+            onTotalTakeUpdated(totalTake);
         }
     }
 }

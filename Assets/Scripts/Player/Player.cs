@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ProfessionalThief
@@ -13,7 +14,15 @@ namespace ProfessionalThief
         }
 
         private void Start() {
-            movement.SetMovementInput(playerInput);
+            RegisterForEvents();
+        }
+
+        private void RegisterForEvents(){
+            GameManager.Instance.onGameOver += DisablePlayerMovement;
+        }
+
+        private void DisablePlayerMovement(){
+            movement.DisableMovement(true);
         }
     }
 }

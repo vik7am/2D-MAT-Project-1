@@ -13,13 +13,15 @@ namespace ProfessionalThief
         private new Rigidbody2D rigidbody2D;
         private Vector2 direction;
         private IMovementInput movementInput;
+        private bool disableMovement;
 
         private void Awake(){
             rigidbody2D = GetComponent<Rigidbody2D>();
+            movementInput = GetComponent<IMovementInput>();
         }
 
         private void Update(){
-            if(movementInput == null)
+            if(movementInput == null || disableMovement)
                 return;
             UpdateMovementDirection();
             UpdateLookDirection();
@@ -29,10 +31,6 @@ namespace ProfessionalThief
             if(movementInput == null)
                 return;
             UpdateMovement();
-        }
-
-        public void SetMovementInput(IMovementInput movementInput){
-            this.movementInput = movementInput;
         }
 
         private void UpdateMovementDirection(){
@@ -46,6 +44,11 @@ namespace ProfessionalThief
 
         private void UpdateMovement(){
             rigidbody2D.velocity = direction * speed;
+        }
+
+        public void DisableMovement(bool status){
+            direction = Vector2.zero;
+            disableMovement = status;
         }
     }
 }

@@ -6,11 +6,20 @@ namespace ProfessionalThief
 {
     public class GameManager : GenericMonoSingleton<GameManager>
     {
-        public UnityEvent onGameOver;
+        public event Action onGameOver;
+        public event Action<UserInterfaceID> onSwitchUI;
 
         public void ActivateAlarm(){
             Debug.Log("Game Over");
             onGameOver?.Invoke();
+        }
+
+        public void MissionCompleted(){
+            onSwitchUI?.Invoke(UserInterfaceID.MISSION_COMPLETED);
+        }
+
+        public void MissionFailed(){
+            onSwitchUI?.Invoke(UserInterfaceID.MISSION_FAILED);
         }
     }
 }

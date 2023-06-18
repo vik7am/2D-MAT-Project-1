@@ -5,12 +5,12 @@ using System;
 
 namespace ProfessionalThief
 {
-    public class EventManager : GenericMonoSingleton<EventManager>
-    {
-        public event Action<int> onTotalTakeUpdated;
+    // public class EventManager : GenericMonoSingleton<EventManager>
+    // {
+    //     public event Action<int> onTotalTakeUpdated;
 
-        public void OnTotalTakeUpdated(int amountInDollar){
-            onTotalTakeUpdated?.Invoke(amountInDollar);
-        }
-    }
+    //     public void OnTotalTakeUpdated(int amountInDollar){
+    //         onTotalTakeUpdated?.Invoke(amountInDollar);
+    //     }
+    // }
 }

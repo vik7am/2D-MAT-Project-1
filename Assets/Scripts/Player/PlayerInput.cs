@@ -10,11 +10,14 @@ namespace ProfessionalThief
 
         private void Start() {
             inputDisabled = false;
+            RegisterEvents();
+        }
+
+        private void RegisterEvents(){
+            GameManager.Instance.onGameOver += DisablePlayerInput;
         }
 
         public Vector2 GetMovementDirection(){
-            if(inputDisabled)
-                return Vector2.zero;
             movementInput.x = Input.GetAxisRaw("Horizontal");
             movementInput.y = Input.GetAxisRaw("Vertical");
             return movementInput.normalized;
