@@ -21,8 +21,13 @@ namespace ProfessionalThief
         public IdleState IdleState {get => idleState;}
         public StunnedState StunnedState {get => stunnedState;}
 
+        private void Awake() {
+            movement = GetComponent<Movement>();
+        }
+
         private void Start(){
             InitializeStates();
+            ChangeState(normalState);
         }
 
         private void Update(){

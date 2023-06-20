@@ -47,7 +47,8 @@ namespace ProfessionalThief
         }
 
         public void DisableMovement(bool status){
-            direction = Vector2.zero;
+            if(!status)
+                direction = Vector2.zero;
             disableMovement = status;
         }
     }
