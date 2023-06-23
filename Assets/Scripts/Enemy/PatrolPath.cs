@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,27 +11,26 @@ namespace ProfessionalThief
 
         private void Awake() {
             pathCount = transform.childCount;
-            InitializePath();
+        }
+
+         private void OnDrawGizmos() {
+            pathCount = transform.childCount;
+            DrawWaypoints();
+            DrawLinesAroundWaypoints();
         }
 
         protected void DrawWaypoints() {
             for(int i = 0; i<pathCount; i++){
-                Gizmos.DrawSphere(GetWaypoint(i), 0.2f);
+                Gizmos.DrawSphere(GetWaypointPosition(i), 0.2f);
             }
         }
 
-        public Vector2 GetWaypoint(int index){
+        public Vector2 GetWaypointPosition(int index){
             return transform.GetChild(index).position;
         }
 
-        public Vector2 GetNextWaypoint(int index){
-            int nextWaypointIndex = GetNextWaypointIndex(index);
-            return GetWaypoint(nextWaypointIndex);
-        }
-
-        public abstract int GetNextWaypointIndex(int index);
-        public abstract void InitializePath();
-        public abstract Vector2 GetNextWaypoint();
+        protected virtual void DrawLinesAroundWaypoints(){}
+        public abstract Queue<Vector2> GetWaypointQueue();
 
     }
 }

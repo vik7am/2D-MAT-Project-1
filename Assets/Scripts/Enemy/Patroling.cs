@@ -13,25 +13,34 @@ namespace ProfessionalThief
         private Vector2 nextWaypoint;
         private Vector2 movementInput;
         private Movement movement;
+        private Queue<Vector2> waypointQueue;
         
-        void Start(){
-            currentWayPoint = patrolPath.GetWaypoint(0);
-            nextWaypoint = patrolPath.GetNextWaypoint();
-            transform.position = currentWayPoint;
-            movementInput = nextWaypoint - currentWayPoint;
+        private void Start(){
+            waypointQueue = patrolPath.GetWaypointQueue();
+            nextWaypoint = transform.position;
+            UpdateWaypoint();
         }
 
         private void Update(){
             CheckDestination();
         }
 
-        private void CheckDestination()
-        {
+        private void CheckDestination(){
             if(Vector2.Distance(transform.position, nextWaypoint) < stoppingDistance){
-                currentWayPoint = nextWaypoint;
-                nextWaypoint = patrolPath.GetNextWaypoint();
-                movementInput = nextWaypoint - currentWayPoint;
+                UpdateWaypoint();
             }
+        }
+
+        private void UpdateWaypoint(){
+            currentWayPoint = nextWaypoint;
+            nextWaypoint = GetNextWaypoint();
+            movementInput = nextWaypoint - currentWayPoint;
+        }
+
+        private Vector2 GetNextWaypoint(){
+            Vector2 waypoint = waypointQueue.Dequeue();
+            waypointQueue.Enqueue(waypoint);
+            return waypoint;
         }
 
         public Vector2 GetMovementDirection(){

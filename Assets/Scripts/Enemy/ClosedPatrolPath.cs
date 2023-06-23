@@ -8,36 +8,20 @@ namespace ProfessionalThief
     {
         private Queue<Vector2> waypointQueue;
 
-        public override Vector2 GetNextWaypoint(){
-            Vector2 waypoint = waypointQueue.Dequeue();
-            waypointQueue.Enqueue(waypoint);
-            return waypoint;
+        protected override void DrawLinesAroundWaypoints(){
+            for(int i = 0; i<pathCount-1; i++){
+                Gizmos.DrawLine(GetWaypointPosition(i), GetWaypointPosition(i+1));
+            }
+            Gizmos.DrawLine(GetWaypointPosition(0), GetWaypointPosition(pathCount-1));
         }
 
-        public override void InitializePath(){
+        public override Queue<Vector2> GetWaypointQueue()
+        {
             waypointQueue = new Queue<Vector2>();
-            for(int i=0; i< pathCount; i++){
+            for(int i=0; i<transform.childCount; i++){
                 waypointQueue.Enqueue(transform.GetChild(i).position);
             }
-        }
-
-        private void OnDrawGizmos() {
-            pathCount = transform.childCount;
-            DrawWaypoints();
-            DrawLinesAroundWaypoints();
-        }
-
-        protected void DrawLinesAroundWaypoints(){
-            for(int i = 0; i<pathCount; i++){
-                int j = GetNextWaypointIndex(i);
-                Gizmos.DrawLine(GetWaypoint(i), GetWaypoint(j));
-            }
-        }
-
-        public override int GetNextWaypointIndex(int index){
-            if(index == pathCount-1)
-                return 0;
-            return index+1;
+            return waypointQueue;
         }
     }
 }
